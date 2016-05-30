@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 App_tags file
 Author : Ramiro de Jesus gutierrez alaniz
@@ -6,8 +7,8 @@ Date : Sunday, January 31, 2016
 # All the improts
 from django import template
 from django.conf import settings
-from events.models import Competition, Galery, Price
-from competitors.models import Competitor
+from events.models import Competition, Galery, Price, Conv
+from competitors.models import Competitor, Register, TimeReg 
 import os, json
 
 # register varialbe for register the filters on the template library
@@ -53,6 +54,17 @@ def get_galery( value ) :
     return galery
 # End of get_galery function
 
+@register.filter( name='get_all_conv' )
+def get_all_conv( value ) : 
+    """
+    Returns the convocatories of the event
+    """
+    # Filter the convs
+    convs = Conv.objects.filter( event = value.pk )
+    # Return the convs
+    return convs
+# End of get_all_conv function
+
 @register.filter( name='get_prices' )
 def get_prices( value ):
     """
@@ -84,6 +96,46 @@ def get_longitude( value ) :
         attrs = value.ubication.strip().split(",")
         return attrs[1]
 # End of get_latitude function
+
+@register.filter( name="get_time_registers" )
+def get_time_registers( value ) :
+    """
+    This will return the time registers from a competitor
+    """
+    time_regs = TimeReg.objects.filter( register = value.pk )
+    # return the time registers
+    return time_regs
+# End of get_time_registers function
+
+@register.filter(name="get_competitors_place_global")
+def get_competitors_place_global( value, value2 ) :
+    """
+    this will return the competitor's time of an event
+    value; this is the competitor
+    value2¨; this is the competition
+    """
+    return "1st"
+# End of get_competitors_time_ev function
+
+@register.filter(name="get_competitors_place_cat")
+def get_competitors_place_cat( value, value2 ) :
+    """
+    this will return the competitor's time of a categry
+    value; this is the competitor
+    value2¨; this is the competition
+    """
+    return "2nd"
+# End of get_competitors_time_cat function
+
+@register.filter(name="get_competitors_time")
+def get_competitors_time( value, value2 ) :
+    """
+    This will return the competitor's time of the competence
+    value; this is the competitor
+    value2; this is the event
+    """
+    return "12hr:09m:34s"
+# End of get_competitors_time function
 
 @register.assignment_tag
 def get_loads():# Get the contents

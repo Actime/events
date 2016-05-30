@@ -149,6 +149,22 @@ class Galery( models.Model ) :
 # End of Galery Model class
 
 """
+In this we will add all the images to 
+the event as a url from imgur.com
+"""
+class Conv( models.Model ) :
+    # The event we are going to add the gallery
+    event = models.ForeignKey( 'events.Event', default=1 )
+    # The image url srtring of the image duuuh
+    image_url = models.TextField( max_length = None, default='', blank = True )
+    # Unicode function, almost important
+    def __unicode__(self):
+        """ Return the stringable model value """
+        return self.image_url
+    # End of unicode function
+# End of Galery Model class
+
+"""
 This is a premio, i don't know if I put it well
 """
 class Price( models.Model ) :
