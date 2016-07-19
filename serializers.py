@@ -8,7 +8,7 @@ Date - Tuesday, January 5, 2016
 
 # Imports
 from rest_framework import serializers
-from .models import Category, CompetitionType, Event, Competition, Galery, Price
+from .models import Category, CompetitionType, Event, EventType, Competition, Galery, Price
 
 """
 Category Serializer
@@ -57,6 +57,26 @@ class CompetitionTypeSerializer( serializers.ModelSerializer ) :
 # End of CompetitionType Serializer class
 
 """
+Event type serializer
+serializer class
+"""
+class EventTypeSerializer( serializers.ModelSerializer ) :
+
+    """
+    Meta class for serializer information
+    """
+    class Meta :
+        model = EventType
+        fields = (
+            'id',
+            'name',
+            'description',
+        )
+    # End of Meta class
+    
+# End of EventTypeSerializer class
+
+"""
 Event Serializer
 Serializer Class
 Model Reference : /Cronometraje/Sistema/UML.doc > Events
@@ -79,6 +99,9 @@ class EventSerializer( serializers.ModelSerializer ) :
             'date_limit',
             'competitors_limit',
             'event_type',
+            'ubication',
+            'orginizer',
+            'address',
         )
     # End of Meta class
     
