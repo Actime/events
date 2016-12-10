@@ -21,7 +21,7 @@ class Category( models.Model ) :
     description = models.TextField( max_length = None, default = '' )
     age_1 = models.IntegerField( default = 0 )
     age_2 = models.IntegerField( default = 0 )
-    color = models.CharField( max_length = 200, default = '', unique = True )
+    color = models.CharField( max_length = 200, default = '', unique = False )
     
     timestamp = models.DateTimeField( auto_now_add = True, auto_now = False )#date created
     updated = models.DateTimeField( auto_now_add = False, auto_now = True )#date updated
@@ -89,10 +89,10 @@ class Event( models.Model ) :
     date_limit = models.DateTimeField( blank = True )
     competitors_limit = models.IntegerField( default = 1 )
     event_type = models.ForeignKey( EventType, default = 1 )
-    address = models.TextField( max_length = None, default = '' )
+    address = models.TextField( max_length = None, default = '', blank=True )
     
     ubication = models.CharField( max_length = 500, default = '' )
-    orginizer = models.CharField( max_length = 500, default = '' )
+    orginizer = models.CharField( max_length = 500, default = '', blank=True )
     timestamp = models.DateTimeField( auto_now_add = True, auto_now = False )#date created
     updated = models.DateTimeField( auto_now_add = False, auto_now = True )#date updated
     

@@ -8,7 +8,7 @@ Date - Tuesday, January 5, 2016
 
 # Imports
 from rest_framework import serializers
-from .models import Category, CompetitionType, Event, EventType, Competition, Galery, Price
+from .models import Category, CompetitionType, Event, EventType, Competition, Galery, Price, Conv
 
 """
 Category Serializer
@@ -171,3 +171,18 @@ class PriceSerializer( serializers.ModelSerializer ) :
         )
     # End of meta class
 # End of PriceSerializer class
+
+class ConvSerializer( serializers.ModelSerializer ) : 
+    
+    """
+    Meta class for serializer information
+    """
+    class Meta :
+        model = Conv
+        fields = (
+            'id',
+            'event',
+            'image_url'
+        )
+    # End of meta class
+# Edn fo conv serializer class 
